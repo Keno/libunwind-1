@@ -42,7 +42,6 @@ tdep_access_reg (struct cursor *c, unw_regnum_t reg, unw_word_t *valp,
       break;
 
     case UNW_HPPA_CFA:
-    case UNW_HPPA_SP:
       if (write)
         return -UNW_EREADONLYREG;
       *valp = c->dwarf.cfa;

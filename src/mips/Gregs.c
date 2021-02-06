@@ -31,7 +31,7 @@ tdep_access_reg (struct cursor *c, unw_regnum_t reg, unw_word_t *valp,
                  int write)
 {
   dwarf_loc_t loc = DWARF_NULL_LOC;
-  
+
   switch (reg)
     {
     case UNW_MIPS_R0:

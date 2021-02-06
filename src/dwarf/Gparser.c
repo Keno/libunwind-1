@@ -500,6 +500,8 @@ setup_fde (struct dwarf_cursor *c, dwarf_state_record_t *sr)
   memset (sr, 0, sizeof (*sr));
   for (i = 0; i < DWARF_NUM_PRESERVED_REGS + 2; ++i)
     set_reg (sr, i, DWARF_WHERE_SAME, 0);
+  // SP defaults to CFA (but is overridable)
+  set_reg (sr, UNW_TDEP_SP, DWARF_WHERE_CFA, 0);
 
   struct dwarf_cie_info *dci = c->pi.unwind_info;
   sr->rs_current.ret_addr_column  = dci->ret_addr_column;
@@ -824,6 +826,10 @@ apply_reg_state (struct dwarf_cursor *c, struct dwarf_reg_state *rs)
           break;
 
         case DWARF_WHERE_SAME:
+          break;
+
+        case DWARF_WHERE_CFA:
+          new_loc[i] = DWARF_VAL_LOC (c, cfa);
           break;
 
         case DWARF_WHERE_CFAREL:

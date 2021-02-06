@@ -146,11 +146,9 @@ typedef enum
     UNW_AARCH64_FPSR,
     UNW_AARCH64_FPCR,
 
-    /* For AArch64, the CFA is the value of SP (x31) at the call site of the
-       previous frame.  */
-    UNW_AARCH64_CFA = UNW_AARCH64_SP,
-
     UNW_TDEP_LAST_REG = UNW_AARCH64_FPCR,
+
+    UNW_AARCH64_CFA,
 
     UNW_TDEP_IP = UNW_AARCH64_X30,
     UNW_TDEP_SP = UNW_AARCH64_SP,
